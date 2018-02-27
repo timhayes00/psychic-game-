@@ -18,61 +18,80 @@
     var wins = 0;
     var losses = 0;
     var remainingGuesses = 9;
+    var guessedLetters = [];
 
     // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
-    var computerChoices = ["a", "b", "b", "d", "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-    console.log(computerChoices);
-    
+    var computerChoices = ["a", "b", "c", "d", "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    var userGuess = "";
+    console.log(computerLetter);
+    console.log(remainingGuesses);
+    console.log(userGuess);
+    console.log(document);
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
+        console.log("hi");
+        var userGuess = event.key;
 
-    var userGuess = event.key;
+        var html =
+        "<p>wins: " + wins + "</p>" +
+        "<p>losses: " + losses + "</p>" + 
+        "<p> remaining guesses: " + remainingGuesses + "</p>";
+        "<p> you have already guessed " + guessedLetters + "</p>";
+
+        document.querySelector("#game").innerHTML = html;
 
 
-    var computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-    console.log(computerLetter);
-
-    while(remainingGuesses > 0){
+        
+        console.log("hello");
         if (userGuess === computerLetter) {
             wins++;
+            var endGame = function();
             }
-
         else{
-            remainingGuesses - 1;
+            remainingGuesses--;
+            guessedLetters.push(userGuess);
+            console.log(guessedLetters);
         }
-    }
-
-
-      var html =
-      "<p>You chose: " + userGuess + "</p>" +
-      "<p>The computer chose: " + computerGuess + "</p>" +
-      "<p>wins: " + wins + "</p>" +
-      "<p>losses: " + losses + "</p>" + 
-      "<p> ties: " + ties + "</p>";
-
-      document.querySelector("#game").innerHTML = html;
     
     
-    
-      // Determines which key was pressed.
+        var html =
+        "<p>wins: " + wins + "</p>" +
+        "<p>losses: " + losses + "</p>" + 
+        "<p> remaining guesses: " + remainingGuesses + "</p>";
+        "<p> you have already guessed " + guessedLetters + "</p>";
 
-      
-        document.getElementById("game").innerHTML = html;
-      }
-      // Alerts the key the user pressed (userGuess).
-      document.onkeyup = function(event){
-        alert("User guess: " + userGuess);
+        document.querySelector("#game").innerHTML = html;
 
-        // Alerts the Computer's guess.
-        alert("Computer guess: " + computerGuess);
 
-        console.log(html);
+        // var html =
+        // "<p>wins: " + wins + "</p>" +
+        // "<p>losses: " + losses + "</p>" + 
+        // "<p> remaining guesses: " + remainingGuesses + "</p>";
+        // "<p> you have already guessed " + guessedLetters + "</p>";
+
+        // document.querySelector("#game").innerHTML = html;
+        // document.getElementById("game").innerHTML = html;
+        
+        
+        // Determines which key was pressed.
+
+        
+         //   document.getElementById("game").innerHTML = html;
+        }
+        // Alerts the key the user pressed (userGuess).
+    //     document.onkeyup = function(event){
+    //         // alert("User guess: " + userGuess);
+
+    //         // // Alerts the Computer's guess.
+    //         // alert("Computer guess: " + computerLetter);
+
+    //         // console.log(html);
+        
+    //         //Once we have a loop providing the user's imput and the randomly generated computer's guess, we can use this code to evaluate wins/losses/ties.
       
-        //Once we have a loop providing the user's imput and the randomly generated computer's guess, we can use this code to evaluate wins/losses/ties.
-      
-    };
+    // };
   </script>
 
 </body>
