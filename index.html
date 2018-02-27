@@ -17,32 +17,25 @@
 
     var wins = 0;
     var losses = 0;
-    var remainingGuesses = 10;
-    var guessedLetters = [];
-
-    var computerChoices = ["a", "b", "c", "d", "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    var computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    var userGuess = "";
-    console.log(computerLetter);
+    newGame();
 
     function resetGameBoard(){
-    var html =
-    "<p>wins: " + wins + "</p>" +
-    "<p>losses: " + losses + "</p>" + 
-    "<p> remaining guesses: " + remainingGuesses + "</p>" +
-    "<p> you have already guessed " + guessedLetters + "</p>";
-
-    document.querySelector("#game").innerHTML = html;
+        var html =
+        "<p>wins: " + wins + "</p>" +
+        "<p>losses: " + losses + "</p>" + 
+        "<p> remaining guesses: " + remainingGuesses + "</p>" +
+        "<p> you have already guessed " + guessedLetters + "</p>";
+        document.querySelector("#game").innerHTML = html;
     }
 
     function newGame(){
-    remainingGuesses = 10;
-    guessedLetters = [];
-    computerChoices = ["a", "b", "c", "d", "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    userGuess = "";
-    resetGameBoard();
-    console.log(computerLetter);
+        remainingGuesses = 10;
+        guessedLetters = [];
+        computerChoices = ["a", "b", "c", "d", "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        userGuess = "";
+        resetGameBoard();
+        console.log(computerLetter);
     }
 
     document.onkeyup = function(event) {
@@ -53,15 +46,13 @@
         "<p> remaining guesses: " + remainingGuesses + "</p>" +
         "<p> you have already guessed " + guessedLetters + "</p>";
         document.querySelector("#game").innerHTML = html;
-
-        // document.querySelector("#game").innerHTML = html;
-
         
 
         if (userGuess === computerLetter) {
             wins++;
             newGame();
             }
+
         else{
             remainingGuesses--;
             guessedLetters.push(userGuess);
@@ -69,13 +60,10 @@
             if(remainingGuesses < 1){
                 losses++;
                 remainingGuesses = 10;
-                guessedLetters = [];
                 newGame();
             }
         }
-    
-
-        }
+    }
 
   </script>
 
