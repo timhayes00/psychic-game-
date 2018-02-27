@@ -17,10 +17,9 @@
 
     var wins = 0;
     var losses = 0;
-    var remainingGuesses = 9;
+    var remainingGuesses = 10;
     var guessedLetters = [];
 
-    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
     var computerChoices = ["a", "b", "c", "d", "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     var computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     var userGuess = "";
@@ -28,41 +27,75 @@
     console.log(remainingGuesses);
     console.log(userGuess);
     console.log(document);
-    // This function is run whenever the user presses a key.
+
+    function resetGameBoard(){
+    var html =
+    "<p>wins: " + wins + "</p>" +
+    "<p>losses: " + losses + "</p>" + 
+    "<p> remaining guesses: " + remainingGuesses + "</p>" +
+    "<p> you have already guessed " + guessedLetters + "</p>";
+
+    document.querySelector("#game").innerHTML = html;
+    }
+
     document.onkeyup = function(event) {
-        console.log("hi");
+    
         var userGuess = event.key;
 
         var html =
         "<p>wins: " + wins + "</p>" +
         "<p>losses: " + losses + "</p>" + 
-        "<p> remaining guesses: " + remainingGuesses + "</p>";
+        "<p> remaining guesses: " + remainingGuesses + "</p>" +
         "<p> you have already guessed " + guessedLetters + "</p>";
-
         document.querySelector("#game").innerHTML = html;
 
 
 
-        
-        console.log("hello");
+    function newGame(){
+        console.log("new game fired")
+        var remainingGuesses = 10;
+        console.log(remainingGuesses)
+        var guessedLetters = [];
+        var computerChoices = ["a", "b", "c", "d", "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        var computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        var userGuess = "";
+        resetGameBoard();
+        }
+
+    resetGameBoard();
+
+    document.querySelector("#game").innerHTML = html;
+
+
         if (userGuess === computerLetter) {
             wins++;
-            var endGame = function();
+            var remainingGuesses = 10;
+            var guessedLetters = [];
+            newGame();
             }
         else{
             remainingGuesses--;
-            guessedLetters.push(userGuess);
             console.log(guessedLetters);
+            guessedLetters.push(userGuess);
+            resetGameBoard();
+
+            if(remainingGuesses < 1){
+                losses++;
+                var remainingGuesses = 10;
+                var guessedLetters = [];
+                newGame();
+         
+            }
         }
     
     
-        var html =
-        "<p>wins: " + wins + "</p>" +
-        "<p>losses: " + losses + "</p>" + 
-        "<p> remaining guesses: " + remainingGuesses + "</p>";
-        "<p> you have already guessed " + guessedLetters + "</p>";
+        // var html =
+        // "<p>wins: " + wins + "</p>" +
+        // "<p>losses: " + losses + "</p>" + 
+        // "<p> remaining guesses: " + remainingGuesses + "</p>" +
+        // "<p> you have already guessed " + guessedLetters + "</p>";
 
-        document.querySelector("#game").innerHTML = html;
+        // document.querySelector("#game").innerHTML = html;
 
 
         // var html =
