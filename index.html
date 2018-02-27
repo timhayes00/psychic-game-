@@ -24,9 +24,6 @@
     var computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     var userGuess = "";
     console.log(computerLetter);
-    console.log(remainingGuesses);
-    console.log(userGuess);
-    console.log(document);
 
     function resetGameBoard(){
     var html =
@@ -38,10 +35,18 @@
     document.querySelector("#game").innerHTML = html;
     }
 
-    document.onkeyup = function(event) {
-    
-        var userGuess = event.key;
+    function newGame(){
+    remainingGuesses = 10;
+    guessedLetters = [];
+    computerChoices = ["a", "b", "c", "d", "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    userGuess = "";
+    resetGameBoard();
+    console.log(computerLetter);
+    }
 
+    document.onkeyup = function(event) {
+        var userGuess = event.key;
         var html =
         "<p>wins: " + wins + "</p>" +
         "<p>losses: " + losses + "</p>" + 
@@ -49,82 +54,29 @@
         "<p> you have already guessed " + guessedLetters + "</p>";
         document.querySelector("#game").innerHTML = html;
 
+        // document.querySelector("#game").innerHTML = html;
 
-
-    function newGame(){
-        console.log("new game fired")
-        var remainingGuesses = 10;
-        console.log(remainingGuesses)
-        var guessedLetters = [];
-        var computerChoices = ["a", "b", "c", "d", "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-        var computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-        var userGuess = "";
-        resetGameBoard();
-        }
-
-    resetGameBoard();
-
-    document.querySelector("#game").innerHTML = html;
-
+        
 
         if (userGuess === computerLetter) {
             wins++;
-            var remainingGuesses = 10;
-            var guessedLetters = [];
             newGame();
             }
         else{
             remainingGuesses--;
-            console.log(guessedLetters);
             guessedLetters.push(userGuess);
             resetGameBoard();
-
             if(remainingGuesses < 1){
                 losses++;
-                var remainingGuesses = 10;
-                var guessedLetters = [];
+                remainingGuesses = 10;
+                guessedLetters = [];
                 newGame();
-         
             }
         }
     
-    
-        // var html =
-        // "<p>wins: " + wins + "</p>" +
-        // "<p>losses: " + losses + "</p>" + 
-        // "<p> remaining guesses: " + remainingGuesses + "</p>" +
-        // "<p> you have already guessed " + guessedLetters + "</p>";
 
-        // document.querySelector("#game").innerHTML = html;
-
-
-        // var html =
-        // "<p>wins: " + wins + "</p>" +
-        // "<p>losses: " + losses + "</p>" + 
-        // "<p> remaining guesses: " + remainingGuesses + "</p>";
-        // "<p> you have already guessed " + guessedLetters + "</p>";
-
-        // document.querySelector("#game").innerHTML = html;
-        // document.getElementById("game").innerHTML = html;
-        
-        
-        // Determines which key was pressed.
-
-        
-         //   document.getElementById("game").innerHTML = html;
         }
-        // Alerts the key the user pressed (userGuess).
-    //     document.onkeyup = function(event){
-    //         // alert("User guess: " + userGuess);
 
-    //         // // Alerts the Computer's guess.
-    //         // alert("Computer guess: " + computerLetter);
-
-    //         // console.log(html);
-        
-    //         //Once we have a loop providing the user's imput and the randomly generated computer's guess, we can use this code to evaluate wins/losses/ties.
-      
-    // };
   </script>
 
 </body>
